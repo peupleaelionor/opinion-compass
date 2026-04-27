@@ -14,16 +14,451 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analytics_events: {
+        Row: {
+          created_at: string
+          event_name: string
+          id: string
+          properties: Json
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_name: string
+          id?: string
+          properties?: Json
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_name?: string
+          id?: string
+          properties?: Json
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      comments: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          is_hidden: boolean
+          likes_count: number
+          parent_id: string | null
+          signal_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          is_hidden?: boolean
+          likes_count?: number
+          parent_id?: string | null
+          signal_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          is_hidden?: boolean
+          likes_count?: number
+          parent_id?: string | null
+          signal_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "signals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hotd: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          ends_at: string
+          id: string
+          locale: string
+          signal_id: string
+          starts_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          ends_at: string
+          id?: string
+          locale?: string
+          signal_id: string
+          starts_at: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          ends_at?: string
+          id?: string
+          locale?: string
+          signal_id?: string
+          starts_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hotd_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "signals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      likes: {
+        Row: {
+          created_at: string
+          id: string
+          target_id: string
+          target_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          target_id: string
+          target_type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          target_id?: string
+          target_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          accuracy_score: number
+          avatar_url: string | null
+          badges: string[]
+          bio: string | null
+          created_at: string
+          display_name: string
+          home_region: Database["public"]["Enums"]["region_code"]
+          id: string
+          interests: Database["public"]["Enums"]["signal_category"][]
+          locale: string
+          reputation_score: number
+          streak_days: number
+          updated_at: string
+          user_id: string
+          username: string
+          votes_count: number
+        }
+        Insert: {
+          accuracy_score?: number
+          avatar_url?: string | null
+          badges?: string[]
+          bio?: string | null
+          created_at?: string
+          display_name: string
+          home_region?: Database["public"]["Enums"]["region_code"]
+          id?: string
+          interests?: Database["public"]["Enums"]["signal_category"][]
+          locale?: string
+          reputation_score?: number
+          streak_days?: number
+          updated_at?: string
+          user_id: string
+          username: string
+          votes_count?: number
+        }
+        Update: {
+          accuracy_score?: number
+          avatar_url?: string | null
+          badges?: string[]
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          home_region?: Database["public"]["Enums"]["region_code"]
+          id?: string
+          interests?: Database["public"]["Enums"]["signal_category"][]
+          locale?: string
+          reputation_score?: number
+          streak_days?: number
+          updated_at?: string
+          user_id?: string
+          username?: string
+          votes_count?: number
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          created_at: string
+          details: string | null
+          id: string
+          reason: string
+          reporter_id: string
+          reviewed_at: string | null
+          status: Database["public"]["Enums"]["report_status"]
+          target_id: string
+          target_type: string
+        }
+        Insert: {
+          created_at?: string
+          details?: string | null
+          id?: string
+          reason: string
+          reporter_id: string
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["report_status"]
+          target_id: string
+          target_type: string
+        }
+        Update: {
+          created_at?: string
+          details?: string | null
+          id?: string
+          reason?: string
+          reporter_id?: string
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["report_status"]
+          target_id?: string
+          target_type?: string
+        }
+        Relationships: []
+      }
+      signals: {
+        Row: {
+          category: Database["public"]["Enums"]["signal_category"]
+          created_at: string
+          created_by: string | null
+          featured_at: string | null
+          horizon_label: string
+          id: string
+          min_region_votes: number
+          neutral_count: number
+          no_count: number
+          region: Database["public"]["Enums"]["region_code"]
+          resolved_choice: Database["public"]["Enums"]["vote_choice"] | null
+          resolves_at: string | null
+          safe_note: string
+          slug: string
+          status: Database["public"]["Enums"]["signal_status"]
+          summary_en: string
+          summary_fr: string
+          tension_score: number
+          title_en: string
+          title_fr: string
+          updated_at: string
+          yes_count: number
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["signal_category"]
+          created_at?: string
+          created_by?: string | null
+          featured_at?: string | null
+          horizon_label: string
+          id?: string
+          min_region_votes?: number
+          neutral_count?: number
+          no_count?: number
+          region?: Database["public"]["Enums"]["region_code"]
+          resolved_choice?: Database["public"]["Enums"]["vote_choice"] | null
+          resolves_at?: string | null
+          safe_note?: string
+          slug: string
+          status?: Database["public"]["Enums"]["signal_status"]
+          summary_en: string
+          summary_fr: string
+          tension_score?: number
+          title_en: string
+          title_fr: string
+          updated_at?: string
+          yes_count?: number
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["signal_category"]
+          created_at?: string
+          created_by?: string | null
+          featured_at?: string | null
+          horizon_label?: string
+          id?: string
+          min_region_votes?: number
+          neutral_count?: number
+          no_count?: number
+          region?: Database["public"]["Enums"]["region_code"]
+          resolved_choice?: Database["public"]["Enums"]["vote_choice"] | null
+          resolves_at?: string | null
+          safe_note?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["signal_status"]
+          summary_en?: string
+          summary_fr?: string
+          tension_score?: number
+          title_en?: string
+          title_fr?: string
+          updated_at?: string
+          yes_count?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vote_notes: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          is_hidden: boolean
+          likes_count: number
+          nuance_tags: string[]
+          signal_id: string
+          updated_at: string
+          user_id: string
+          vote_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          is_hidden?: boolean
+          likes_count?: number
+          nuance_tags?: string[]
+          signal_id: string
+          updated_at?: string
+          user_id: string
+          vote_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          is_hidden?: boolean
+          likes_count?: number
+          nuance_tags?: string[]
+          signal_id?: string
+          updated_at?: string
+          user_id?: string
+          vote_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vote_notes_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "signals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vote_notes_vote_id_fkey"
+            columns: ["vote_id"]
+            isOneToOne: false
+            referencedRelation: "votes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      votes: {
+        Row: {
+          choice: Database["public"]["Enums"]["vote_choice"]
+          confidence: number
+          created_at: string
+          id: string
+          signal_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          choice: Database["public"]["Enums"]["vote_choice"]
+          confidence?: number
+          created_at?: string
+          id?: string
+          signal_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          choice?: Database["public"]["Enums"]["vote_choice"]
+          confidence?: number
+          created_at?: string
+          id?: string
+          signal_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "votes_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "signals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
+      region_code: "world" | "africa" | "europe" | "france" | "usa"
+      report_status: "open" | "reviewed" | "dismissed" | "actioned"
+      signal_category:
+        | "news"
+        | "tech"
+        | "business"
+        | "crypto"
+        | "sport"
+        | "culture"
+        | "society"
+      signal_status: "draft" | "open" | "resolved" | "archived"
+      vote_choice: "yes" | "no" | "neutral"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +585,21 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+      region_code: ["world", "africa", "europe", "france", "usa"],
+      report_status: ["open", "reviewed", "dismissed", "actioned"],
+      signal_category: [
+        "news",
+        "tech",
+        "business",
+        "crypto",
+        "sport",
+        "culture",
+        "society",
+      ],
+      signal_status: ["draft", "open", "resolved", "archived"],
+      vote_choice: ["yes", "no", "neutral"],
+    },
   },
 } as const
