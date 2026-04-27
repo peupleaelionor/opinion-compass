@@ -1,0 +1,5 @@
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SignalCard } from "@/components/zawios/SignalCard";
+import { signals } from "@/data/zawios";
+export default function Onboarding() { return <div className="safe-shell mx-auto max-w-5xl pb-24 pt-8 md:pb-12"><h1 className="font-display text-4xl font-bold md:text-5xl">Onboarding</h1><div className="mt-6 grid gap-4 md:grid-cols-3"><div className="z-card p-5"><span className="z-pill">1</span><h2 className="mt-4 font-display text-2xl font-bold">Région, langue, intérêts</h2><div className="mt-4 flex flex-wrap gap-2">{["France", "Monde", "Tech", "Société", "Business"].map(x => <button key={x} className="z-pill">{x}</button>)}</div></div><div className="md:col-span-2"><SignalCard signal={signals[1]} /></div><div className="z-card p-5 md:col-span-3"><h2 className="font-display text-2xl font-bold">Résultat + partage</h2><p className="mt-2 text-muted-foreground">Votre premier vote débloque une carte partageable et initialise votre réputation.</p><Button className="mt-4" variant="hero">Terminer <ArrowRight /></Button></div></div></div>; }
