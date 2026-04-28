@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Clock, Gauge, MessageCircle } from "lucide-react";
+import { Clock, Gauge, MessageCircle, Sparkle } from "lucide-react";
 import type { Signal, VoteChoice } from "@/data/zawios";
 import { Button } from "@/components/ui/button";
 
@@ -28,11 +28,12 @@ export function ResultBars({ signal }: { signal: Signal }) {
 
 export function SignalCard({ signal, compact = false, onVote }: { signal: Signal; compact?: boolean; onVote?: (choice: VoteChoice) => void }) {
   return (
-    <article className="z-card group overflow-hidden p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft">
+    <article className="z-card group relative overflow-hidden p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
+      <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="mb-3 flex items-center justify-between gap-3">
         <span className="z-micro-label">Signal {signal.id.replace("sig-", "").padStart(2, "0")}</span>
         <span className="h-px min-w-8 flex-1 bg-line" />
-        <span className="z-micro-label">{signal.trend}</span>
+        <span className="z-micro-label inline-flex items-center gap-1"><Sparkle className="h-3 w-3 text-accent" />{signal.trend}</span>
       </div>
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="z-pill">{signal.category}</span><span className="z-pill">{signal.region}</span><span className="z-pill"><Clock className="mr-1 h-3.5 w-3.5" />{signal.horizon}</span>
