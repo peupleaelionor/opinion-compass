@@ -10,14 +10,18 @@ const Index = () => {
   const featured = signals[0];
   return (
     <div className="relative pb-24 md:pb-10"><BrandBackdrop />
-      <section className="safe-shell mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl content-start gap-8 py-8 md:grid-cols-[1.05fr_0.95fr] md:items-center md:py-12">
+      <section className="safe-shell mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl content-start gap-8 py-7 md:grid-cols-[1.05fr_0.95fr] md:items-center md:py-12">
         <div className="animate-rise-in">
           <div className="mb-6 flex items-center gap-3"><span className="z-pill"><Sparkles className="mr-1 h-3.5 w-3.5" />Mesurer le futur sans crier</span><LocaleSwitch /></div>
+          <div className="mb-5 flex items-center gap-4">
+            <img src="/brand/zawios-mark.svg" alt="Marque ZAWIOS" className="h-14 w-14 rounded-2xl shadow-card" />
+            <span className="z-micro-label">Opinion signals / reputation layer</span>
+          </div>
           <h1 className="max-w-3xl font-display text-5xl font-bold leading-[0.96] tracking-normal text-foreground md:text-7xl">ZAWIOS</h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">Votez sur des signaux d’actualité, comparez votre lecture à la foule et bâtissez une réputation de précision, de nuance et de cohérence.</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row"><Button asChild variant="hero" size="lg"><Link to="/signals">Explorer les signaux <ArrowRight /></Link></Button><Button asChild variant="outline" size="lg"><Link to="/onboarding">Commencer en invité</Link></Button></div>
           <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
-            {["70 signaux seed", "k-anonymity", "FR + EN"].map((item) => <div key={item} className="rounded-xl border border-line bg-card/80 p-3 text-sm font-bold shadow-card">{item}</div>)}
+            {["70 signaux seed", "k-anonymity", "FR + EN"].map((item) => <div key={item} className="rounded-lg border border-line bg-card p-3 text-sm font-bold shadow-card">{item}</div>)}
           </div>
         </div>
         <div className="space-y-4 animate-rise-in md:pt-10"><SignalCard signal={featured} onVote={() => undefined} />
