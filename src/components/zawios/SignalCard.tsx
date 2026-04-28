@@ -29,6 +29,11 @@ export function ResultBars({ signal }: { signal: Signal }) {
 export function SignalCard({ signal, compact = false, onVote }: { signal: Signal; compact?: boolean; onVote?: (choice: VoteChoice) => void }) {
   return (
     <article className="z-card group overflow-hidden p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft">
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <span className="z-micro-label">Signal {signal.id.replace("sig-", "").padStart(2, "0")}</span>
+        <span className="h-px min-w-8 flex-1 bg-line" />
+        <span className="z-micro-label">{signal.trend}</span>
+      </div>
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="z-pill">{signal.category}</span><span className="z-pill">{signal.region}</span><span className="z-pill"><Clock className="mr-1 h-3.5 w-3.5" />{signal.horizon}</span>
       </div>
