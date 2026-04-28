@@ -1,5 +1,13 @@
 <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="256" height="256" rx="56" fill="#F8FBFF"/>
-  <path d="M55 155L103 101L145 137L201 78" stroke="#175CFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M58 187H199" stroke="#B8C8EA" stroke-width="12" stroke-linecap="round"/>
+  <rect width="256" height="256" rx="58" fill="#FBFDFF"/>
+  <rect x="18" y="18" width="220" height="220" rx="46" stroke="#D9E2F3" stroke-width="1.5"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 88C83 88 101 112 128 128C155 144 173 168 208 168" stroke="#B9C4DB" stroke-width="4" opacity="0.52"/>
+    <path d="M48 104C82 104 101 118 128 128C155 138 174 152 208 152" stroke="#7183B2" stroke-width="5" opacity="0.64"/>
+    <path d="M48 120C82 120 101 124 128 128C155 132 174 136 208 136" stroke="#24346F" stroke-width="6" opacity="0.82"/>
+    <path d="M48 136C82 136 101 132 128 128C155 124 174 120 208 120" stroke="#24346F" stroke-width="6" opacity="0.82"/>
+    <path d="M48 152C82 152 101 138 128 128C155 118 174 104 208 104" stroke="#7183B2" stroke-width="5" opacity="0.64"/>
+    <path d="M48 168C83 168 101 144 128 128C155 112 173 88 208 88" stroke="#B9C4DB" stroke-width="4" opacity="0.52"/>
+  </g>
+  <circle cx="128" cy="128" r="7" fill="#111827"/>
 </svg>
