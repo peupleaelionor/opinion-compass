@@ -23,7 +23,7 @@ export function AppShell() {
               <NavLink key={item.to} to={item.to} className={({ isActive }) => `rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>{item.label}</NavLink>
             ))}
           </div>
-          <Button asChild variant="outline" size="sm"><Link to="/admin"><ShieldCheck /> Admin</Link></Button>
+          <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex"><Link to="/admin"><ShieldCheck /> Admin</Link></Button>
         </div>
       </header>
       <main><Outlet /></main>
@@ -31,7 +31,7 @@ export function AppShell() {
         <div className="mx-auto grid max-w-md grid-cols-4 gap-1">
           {nav.map((item) => {
             const Icon = item.icon;
-            return <NavLink key={item.to} to={item.to} className={({ isActive }) => `flex min-h-12 flex-col items-center justify-center rounded-lg text-[11px] font-semibold ${isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}><Icon className="mb-0.5 h-4 w-4" />{item.label}</NavLink>;
+            return <NavLink key={item.to} to={item.to} className={({ isActive }) => `flex min-h-12 flex-col items-center justify-center rounded-lg text-[11px] font-semibold transition-colors ${isActive ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}><Icon className="mb-0.5 h-4 w-4" />{item.label}</NavLink>;
           })}
         </div>
       </nav>
