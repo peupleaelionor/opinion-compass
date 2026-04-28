@@ -3,7 +3,6 @@ import { ArrowRight, Copy, Globe2, Sparkles, UsersRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BrandBackdrop } from "@/components/zawios/BrandBackdrop";
 import { LocaleSwitch } from "@/components/zawios/LocaleSwitch";
-import { SignalCard } from "@/components/zawios/SignalCard";
 import { signals, topAnalysts } from "@/data/zawios";
 import atlasImage from "@/assets/zawios-perspective-atlas.png";
 
@@ -30,8 +29,9 @@ const Index = () => {
             <img src={atlasImage} alt="Atlas visuel ZAWIOS en perspective" className="absolute inset-0 h-full w-full object-cover" width={1600} height={1120} />
             <div className="absolute inset-0 bg-gradient-to-t from-background/92 via-background/20 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 z-glass p-4">
-              <div className="mb-3 flex items-center justify-between"><span className="z-micro-label">Live atlas</span><span className="z-pill">+{featured.tension} tension</span></div>
-              <SignalCard signal={featured} compact onVote={() => undefined} />
+              <div className="mb-3 flex items-center justify-between gap-3"><span className="z-micro-label">Live atlas</span><span className="z-pill">+{featured.tension} tension</span></div>
+              <h2 className="font-display text-lg font-bold leading-snug md:text-xl">{featured.title.fr}</h2>
+              <div className="mt-4 flex h-2 overflow-hidden rounded-full bg-secondary"><span className="bg-success" style={{ width: `${featured.yes}%` }} /><span className="bg-destructive" style={{ width: `${featured.no}%` }} /><span className="bg-neutral-vote" style={{ width: `${featured.neutral}%` }} /></div>
             </div>
           </div>
           <div className="z-card p-4"><div className="mb-3 flex items-center justify-between"><h2 className="font-display text-lg font-bold">Top analysts</h2><Button asChild variant="ghost" size="sm"><Link to="/leaderboard">Voir</Link></Button></div><div className="space-y-2">{topAnalysts.slice(0,3).map((a, i) => <div key={a.username} className="flex min-h-12 items-center justify-between rounded-lg bg-surface px-3"><span className="font-semibold">{i + 1}. {a.username}</span><span className="text-sm font-bold text-primary">{a.score}</span></div>)}</div></div>
