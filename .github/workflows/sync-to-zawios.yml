@@ -1,0 +1,20 @@
+name: Sync to ZAWIOS.IO
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout opinion-compass
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to ZAWIOS.IO
+        run: |
+          git remote add zawios https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/peupleaelionor/ZAWIOS.IO.git
+          git push zawios HEAD:main --force
