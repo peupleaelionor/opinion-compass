@@ -1,44 +1,63 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { BarChart3, Home, Search, ShieldCheck, Trophy, UsersRound } from "lucide-react";
+import { BarChart3, Trophy, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const nav = [
-  { to: "/", label: "Signaux", icon: BarChart3 },
+  { to: "/signals", label: "Signaux", icon: BarChart3 },
   { to: "/leaderboard", label: "Classements", icon: Trophy },
-  { to: "/insights", label: "Insights", icon: BarChart3 },
-  { to: "/methodology", label: "Méthodologie", icon: ShieldCheck },
+  { to: "/methodology", label: "Méthode", icon: ShieldCheck },
 ];
 
 export function AppShell() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border bg-background/86 backdrop-blur-xl supports-[backdrop-filter]:bg-background/72">
-        <div className="safe-shell mx-auto flex h-16 max-w-6xl items-center justify-between gap-3">
-          <Link to="/" className="flex min-h-11 items-center gap-2.5 rounded-lg font-display text-xl font-bold tracking-tight">
-            <img src="/brand/zawios-mark.svg" alt="ZAWIOS" className="h-9 w-9" />
-            <span className="text-[#0B1020] dark:text-white">ZAWIOS</span>
+    <div className="min-h-screen bg-[#F7F8FC] text-[#0B1020]">
+      <header className="sticky top-0 z-40 border-b border-border/50 bg-white/80 backdrop-blur-md">
+        <div className="safe-shell mx-auto flex h-16 max-w-5xl items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+            <img src="/brand/zawios-mark.svg" alt="ZAWIOS" className="h-7 w-7" />
+            <span>ZAWIOS</span>
           </Link>
-          <div className="hidden items-center gap-1 md:flex">
+          
+          <nav className="hidden items-center gap-8 md:flex">
             {nav.map((item) => (
-              <NavLink key={item.to} to={item.to} className={({ isActive }) => `rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}>{item.label}</NavLink>
+              <NavLink 
+                key={item.to} 
+                to={item.to} 
+                className={({ isActive }) => `text-[11px] font-bold uppercase tracking-widest transition-colors ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {item.label}
+              </NavLink>
             ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="sm" className="hidden sm:flex">
-              <Link to="/login">Se connecter</Link>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <Button asChild variant="ghost" size="sm" className="hidden h-9 text-[11px] font-bold uppercase tracking-widest sm:flex">
+              <Link to="/login">Login</Link>
             </Button>
-            <Button asChild variant="default" size="sm">
-              <Link to="/signup">Commencer</Link>
+            <Button asChild size="sm" className="h-9 px-5 text-[11px] font-bold uppercase tracking-widest">
+              <Link to="/signup">Join</Link>
             </Button>
           </div>
         </div>
       </header>
+      
       <main><Outlet /></main>
-      <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/94 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl md:hidden">
-        <div className="mx-auto grid max-w-md grid-cols-4 gap-1">
+
+      {/* Mobile Nav */}
+      <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-white/90 px-6 pb-safe pt-3 backdrop-blur-md md:hidden">
+        <div className="flex justify-between items-center">
           {nav.map((item) => {
             const Icon = item.icon;
-            return <NavLink key={item.to} to={item.to} className={({ isActive }) => `flex min-h-12 flex-col items-center justify-center rounded-lg text-[11px] font-semibold transition-colors ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}><Icon className="mb-0.5 h-4 w-4" />{item.label}</NavLink>;
+            return (
+              <NavLink 
+                key={item.to} 
+                to={item.to} 
+                className={({ isActive }) => `flex flex-col items-center gap-1 transition-colors ${isActive ? "text-primary" : "text-muted-foreground"}`}
+              >
+                <Icon className="h-5 w-5" />
+                <span className="text-[9px] font-bold uppercase tracking-tighter">{item.label}</span>
+              </NavLink>
+            );
           })}
         </div>
       </nav>
