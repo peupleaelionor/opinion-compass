@@ -11,16 +11,16 @@ const voteMeta: Record<VoteChoice, { label: string; variant: "voteYes" | "voteNo
 
 export function ResultBars({ signal }: { signal: Signal }) {
   return (
-    <div className="space-y-2" aria-label="Répartition des votes">
-      <div className="flex h-2.5 overflow-hidden rounded-full bg-secondary">
-        <span className="bg-success" style={{ width: `${signal.yes}%` }} />
-        <span className="bg-destructive" style={{ width: `${signal.no}%` }} />
-        <span className="bg-neutral-vote" style={{ width: `${signal.neutral}%` }} />
+    <div className="space-y-3" aria-label="Répartition des votes">
+      <div className="flex h-3 overflow-hidden rounded-full bg-secondary/50">
+        <span className="bg-success transition-all duration-500" style={{ width: `${signal.yes}%` }} />
+        <span className="bg-destructive transition-all duration-500" style={{ width: `${signal.no}%` }} />
+        <span className="bg-neutral-vote transition-all duration-500" style={{ width: `${signal.neutral}%` }} />
       </div>
-      <div className="grid grid-cols-3 gap-2 text-xs font-bold text-muted-foreground">
-        <span className="text-success">Oui {signal.yes}%</span>
-        <span className="text-destructive">Non {signal.no}%</span>
-        <span className="text-neutral-vote">Trop tôt {signal.neutral}%</span>
+      <div className="flex justify-between text-[11px] font-bold uppercase tracking-wider">
+        <span className="text-success">{signal.yes}% OUI</span>
+        <span className="text-neutral-vote">{signal.neutral}% —</span>
+        <span className="text-destructive">{signal.no}% NON</span>
       </div>
     </div>
   );
@@ -28,27 +28,68 @@ export function ResultBars({ signal }: { signal: Signal }) {
 
 export function SignalCard({ signal, compact = false, onVote }: { signal: Signal; compact?: boolean; onVote?: (choice: VoteChoice) => void }) {
   return (
-    <article className="z-card group relative overflow-hidden p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-      <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="z-micro-label">Signal {signal.id.replace("sig-", "").padStart(2, "0")}</span>
-        <span className="h-px min-w-8 flex-1 bg-line" />
-        <span className="z-micro-label inline-flex items-center gap-1"><Sparkle className="h-3 w-3 text-accent" />{signal.trend}</span>
+    <article className="z-card group relative flex flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-perspective bg-white">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+          <span className="z-micro-label text-primary">Signal {signal.id.replace("sig-", "").padStart(2, "0")}</span>
+        </div>
+        <span className="z-pill bg-primary/5 text-primary border-none text-[10px] font-bold">
+          <Sparkle className="mr-1 h-3 w-3" />
+          {signal.trend}
+        </span>
       </div>
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <span className="z-pill">{signal.category}</span><span className="z-pill">{signal.region}</span><span className="z-pill"><Clock className="mr-1 h-3.5 w-3.5" />{signal.horizon}</span>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        <span className="z-pill bg-[#F1F3FA] text-[#475569] border-none">{signal.category}</span>
+        <span className="z-pill bg-[#F1F3FA] text-[#475569] border-none">{signal.region}</span>
+        <span className="z-pill bg-[#F1F3FA] text-[#475569] border-none">
+          <Clock className="mr-1.5 h-3 w-3" />
+          {signal.horizon}
+        </span>
       </div>
-      <Link to={`/signals/${signal.slug}`} className="block rounded-lg">
-        <h2 className="font-display text-lg font-bold leading-snug tracking-normal text-foreground group-hover:text-primary">{signal.title.fr}</h2>
-        {!compact && <p className="mt-2 text-sm leading-6 text-muted-foreground">{signal.summary.fr}</p>}
+
+      <Link to={`/signals/${signal.slug}`} className="mb-4 block flex-1">
+        <h2 className="font-display text-xl font-bold leading-tight text-[#0B1020] group-hover:text-primary transition-colors">
+          {signal.title.fr}
+        </h2>
+        {!compact && (
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+            {signal.summary.fr}
+          </p>
+        )}
       </Link>
-      <div className="mt-4"><ResultBars signal={signal} /></div>
-      <div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold text-muted-foreground">
-        <span className="inline-flex items-center gap-1"><Gauge className="h-4 w-4" />Tension {signal.tension}</span>
-        <span className="inline-flex items-center gap-1"><MessageCircle className="h-4 w-4" />{signal.votes.toLocaleString("fr-FR")} votes</span>
-      </div>
-      <div className="mt-4 grid grid-cols-3 gap-2">
-        {(Object.keys(voteMeta) as VoteChoice[]).map((choice) => <Button key={choice} variant={voteMeta[choice].variant} size="sm" onClick={() => onVote?.(choice)}>{voteMeta[choice].label}</Button>)}
+
+      <div className="mt-auto space-y-6">
+        <ResultBars signal={signal} />
+        
+        <div className="flex items-center justify-between border-t border-border pt-4 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <Gauge className="h-3.5 w-3.5" />
+            Tension {signal.tension}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <MessageCircle className="h-3.5 w-3.5" />
+            {signal.votes.toLocaleString("fr-FR")} votes
+          </span>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2">
+          {(Object.keys(voteMeta) as VoteChoice[]).map((choice) => (
+            <Button 
+              key={choice} 
+              variant={voteMeta[choice].variant} 
+              size="sm" 
+              className="h-10 text-[11px] font-bold"
+              onClick={(e) => {
+                e.preventDefault();
+                onVote?.(choice);
+              }}
+            >
+              {voteMeta[choice].label}
+            </Button>
+          ))}
+        </div>
       </div>
     </article>
   );

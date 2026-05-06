@@ -5,25 +5,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-[12px] text-sm font-semibold ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-soft hover:-translate-y-0.5 hover:bg-primary/95",
+        default: "bg-primary text-primary-foreground shadow-soft hover:bg-primary/95",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-line bg-card text-foreground hover:border-primary/35 hover:bg-brand-soft",
+        outline: "border border-border bg-card text-foreground hover:bg-secondary",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "text-muted-foreground hover:bg-secondary hover:text-foreground",
         link: "min-h-0 text-primary underline-offset-4 hover:underline",
-        hero: "bg-brand text-primary-foreground shadow-soft hover:-translate-y-0.5",
+        hero: "bg-primary text-primary-foreground shadow-soft hover:-translate-y-0.5",
         voteYes: "border border-success/25 bg-success/10 text-success hover:bg-success hover:text-success-foreground",
         voteNo: "border border-destructive/25 bg-destructive/10 text-destructive hover:bg-destructive hover:text-destructive-foreground",
-        voteNeutral: "border border-line bg-secondary text-neutral-vote hover:bg-neutral-vote hover:text-primary-foreground",
+        voteNeutral: "border border-border bg-secondary text-neutral-vote hover:bg-neutral-vote hover:text-primary-foreground",
       },
       size: {
-        default: "h-11 px-4 py-2",
-        sm: "h-10 rounded-lg px-3",
-        lg: "h-12 rounded-lg px-6 text-base",
+        default: "h-11 px-6 py-2",
+        sm: "h-10 rounded-[10px] px-4",
+        lg: "h-12 rounded-[14px] px-8 text-base",
         icon: "h-11 w-11",
       },
     },

@@ -5,11 +5,12 @@ export default {
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
-    container: { center: true, padding: "1rem", screens: { "2xl": "1180px" } },
+    container: { center: true, padding: "1rem", screens: { "2xl": "1280px" } },
     extend: {
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "Plus Jakarta Sans", "ui-sans-serif", "system-ui"],
+        sans: ["Sora", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Sora", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))", input: "hsl(var(--input))", ring: "hsl(var(--ring))", background: "hsl(var(--background))", foreground: "hsl(var(--foreground))",
@@ -28,7 +29,7 @@ export default {
       },
       backgroundImage: { "hero": "var(--gradient-hero)", "brand": "var(--gradient-brand)", "glass": "var(--gradient-glass)" },
       boxShadow: { soft: "var(--shadow-soft)", card: "var(--shadow-card)", perspective: "var(--shadow-perspective)" },
-      borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)", xl: "calc(var(--radius) + 6px)" },
+      borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 4px)", sm: "calc(var(--radius) - 8px)", xl: "24px" },
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
