@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Zap, Globe2, TrendingUp } from "lucide-react";
+import { ArrowRight, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { signals } from "@/data/zawios";
 import { SignalCard } from "@/components/zawios/SignalCard";
@@ -9,169 +9,124 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#F7F8FC]">
-      {/* Hero Section Vibrante */}
-      <section className="safe-shell relative mx-auto max-w-5xl pt-24 pb-20 text-center overflow-hidden">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-slow-float" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-slow-float" style={{ animationDelay: '2s' }} />
-        </div>
-
-        <div className="animate-rise-in space-y-8">
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 shadow-soft border border-border/50">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
-              </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0B1020]">
-                Live: 1,240 votes cette heure
-              </span>
+      {/* Hero Monumental */}
+      <section className="safe-shell mx-auto max-w-6xl pt-32 pb-24">
+        <div className="animate-rise-in space-y-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 text-primary">
+              <Activity className="h-4 w-4" />
+              <span className="z-micro-label">Infrastructure de Vérité</span>
             </div>
+            <h1 className="font-display text-7xl font-bold leading-[0.95] tracking-tighter text-[#0B1020] md:text-9xl">
+              Mesurer<br />
+              l'intelligence.
+            </h1>
           </div>
           
-          <h1 className="mx-auto max-w-4xl font-display text-6xl font-bold leading-[1.05] tracking-tight text-[#0B1020] md:text-8xl">
-            Comprendre <span className="text-primary">ensemble.</span><br />
-            Décider <span className="text-primary">mieux.</span>
-          </h1>
-          
-          <p className="mx-auto max-w-2xl text-xl text-muted-foreground leading-relaxed">
-            ZAWIOS est l'infrastructure de mesure de l'intelligence collective. 
-            Détectez les signaux faibles, mesurez la divergence et bâtissez votre réputation.
-          </p>
-
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row pt-4">
-            <Button asChild size="lg" className="h-14 px-10 text-base shadow-brand group">
-              <Link to="/signals" className="flex items-center gap-2">
-                Explorer les signaux 
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-14 px-10 text-base bg-white">
-              <Link to="/methodology">Méthodologie</Link>
-            </Button>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-3xl mx-auto">
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-2xl font-bold text-[#0B1020]">47K</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Analystes</span>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-2xl font-bold text-[#0B1020]">94</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Pays</span>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-2xl font-bold text-[#0B1020]">1.5M</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Signaux</span>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-2xl font-bold text-[#0B1020]">24/7</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Live Feed</span>
+          <div className="grid md:grid-cols-2 gap-12 items-end">
+            <p className="text-2xl text-muted-foreground leading-relaxed tracking-tight">
+              ZAWIOS est l'instrument de précision pour décoder les signaux mondiaux. 
+              Une clarté absolue dans un monde de bruit.
+            </p>
+            <div className="flex justify-start md:justify-end gap-6">
+              <Button asChild size="lg" className="h-16 px-10 text-lg rounded-full shadow-brand">
+                <Link to="/signals">Explorer</Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg" className="h-16 px-10 text-lg rounded-full">
+                <Link to="/methodology">Méthode</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Flux de Signaux avec Vitalité */}
-      <section className="safe-shell mx-auto max-w-6xl pb-24">
-        <div className="mb-12 flex items-end justify-between border-b border-border pb-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-primary">
-              <TrendingUp className="h-4 w-4" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Signaux Actifs</span>
-            </div>
-            <h2 className="font-display text-3xl font-bold text-[#0B1020]">Intelligence en direct</h2>
-          </div>
-          <Link to="/signals" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
-            Voir tout le flux
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-          </Link>
+      {/* Flux de Signaux Épuré à l'extrême */}
+      <section className="safe-shell mx-auto max-w-6xl pb-32">
+        <div className="mb-16 flex items-baseline justify-between">
+          <h2 className="font-display text-4xl font-bold tracking-tighter text-[#0B1020]">Signaux.</h2>
+          <span className="z-micro-label">Temps Réel / 47,204 Analystes</span>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {featuredSignals.map((signal) => (
             <SignalCard key={signal.id} signal={signal} />
           ))}
         </div>
+
+        <div className="mt-20 text-center">
+          <Link to="/signals" className="group inline-flex items-center gap-4 text-xl font-bold tracking-tight text-primary">
+            Accéder à l'intégralité du flux
+            <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-2" />
+          </Link>
+        </div>
       </section>
 
-      {/* Section "Startup Sérieuse" - Preuve de concept */}
-      <section className="bg-white py-24 border-y border-border">
-        <div className="safe-shell mx-auto max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-lg bg-primary/5 px-3 py-1 text-primary">
-                <Zap className="h-4 w-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">Technologie ZAWIOS</span>
+      {/* Section Puissance - Minimalisme Radical */}
+      <section className="bg-[#0B1020] py-40 text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-white rounded-full" />
+        </div>
+
+        <div className="safe-shell mx-auto max-w-6xl relative z-10">
+          <div className="max-w-3xl space-y-12">
+            <span className="z-micro-label text-white/40">Algorithme Propriétaire</span>
+            <h2 className="font-display text-6xl font-bold leading-tight tracking-tighter">
+              La vérité n'est pas un consensus.<br />
+              C'est une divergence mesurée.
+            </h2>
+            <div className="grid grid-cols-2 gap-12 pt-8">
+              <div className="space-y-2">
+                <p className="text-4xl font-bold tracking-tighter">99.8%</p>
+                <p className="text-xs font-bold uppercase tracking-widest opacity-40">Précision de Signal</p>
               </div>
-              <h2 className="font-display text-4xl font-bold text-[#0B1020] leading-tight">
-                Une mesure objective de la divergence.
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Notre algorithme de "Signal Intelligence" calcule en temps réel la tension intellectuelle sur chaque sujet. 
-                Nous ne cherchons pas le consensus, nous mesurons la vérité là où elle diverge.
-              </p>
-              <ul className="space-y-4 pt-4">
-                {[
-                  "Indice de divergence propriétaire",
-                  "Pondération par réputation historique",
-                  "Détection de signaux faibles par IA",
-                  "Transparence totale des données"
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm font-semibold text-[#0B1020]">
-                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative">
-              <div className="z-card bg-[#F7F8FC] p-8 space-y-6 border-2 border-primary/10">
-                <div className="flex items-center justify-between">
-                  <span className="z-micro-label">Visualisation de Tension</span>
-                  <Globe2 className="h-5 w-5 text-primary/40" />
-                </div>
-                <div className="h-48 flex items-end gap-2">
-                  {[40, 70, 45, 90, 65, 80, 35, 60].map((h, i) => (
-                    <div 
-                      key={i} 
-                      className="flex-1 bg-primary/20 rounded-t-sm transition-all hover:bg-primary" 
-                      style={{ height: `${h}%` }} 
-                    />
-                  ))}
-                </div>
-                <div className="pt-4 border-t border-border flex justify-between items-center">
-                  <span className="text-xs font-bold text-muted-foreground">Moyenne Mondiale</span>
-                  <span className="text-xl font-bold text-primary">74.2</span>
-                </div>
-              </div>
-              {/* Floating element for "vibrant" look */}
-              <div className="absolute -bottom-6 -right-6 z-card bg-primary text-white p-6 shadow-xl animate-slow-float">
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">Précision</p>
-                <p className="text-2xl font-bold">99.8%</p>
+              <div className="space-y-2">
+                <p className="text-4xl font-bold tracking-tighter">12ms</p>
+                <p className="text-xs font-bold uppercase tracking-widest opacity-40">Latence de Calcul</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer Startup */}
-      <footer className="safe-shell mx-auto max-w-5xl py-20">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2 font-display text-xl font-bold">
-            <img src="/brand/zawios-mark.svg" alt="ZAWIOS" className="h-8 w-8" />
-            <span>ZAWIOS</span>
+      {/* Footer Minimaliste */}
+      <footer className="safe-shell mx-auto max-w-6xl py-24">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 font-display text-2xl font-bold">
+              <img src="/brand/zawios-mark.svg" alt="ZAWIOS" className="h-8 w-8" />
+              <span>ZAWIOS</span>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Infrastructure mondiale de mesure de l'intelligence collective.
+            </p>
           </div>
-          <div className="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
-            <Link to="/signals" className="hover:text-primary transition-colors">Signaux</Link>
-            <Link to="/leaderboard" className="hover:text-primary transition-colors">Classements</Link>
-            <Link to="/methodology" className="hover:text-primary transition-colors">Méthodologie</Link>
-            <Link to="/support" className="hover:text-primary transition-colors">Support</Link>
+          <div className="grid grid-cols-2 gap-20">
+            <div className="space-y-4">
+              <p className="z-micro-label">Navigation</p>
+              <ul className="space-y-2 text-sm font-bold">
+                <li><Link to="/signals" className="hover:text-primary transition-colors">Signaux</Link></li>
+                <li><Link to="/leaderboard" className="hover:text-primary transition-colors">Classements</Link></li>
+                <li><Link to="/methodology" className="hover:text-primary transition-colors">Méthode</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <p className="z-micro-label">Légal</p>
+              <ul className="space-y-2 text-sm font-bold">
+                <li><Link to="/privacy" className="hover:text-primary transition-colors">Confidentialité</Link></li>
+                <li><Link to="/terms" className="hover:text-primary transition-colors">Conditions</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40">
-            © 2026 ZAWIOS.IO — Infrastructure de Vérité
+        </div>
+        <div className="mt-24 pt-8 border-t border-border flex justify-between items-center">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground/30">
+            © 2026 ZAWIOS.IO — TOUS DROITS RÉSERVÉS
           </p>
+          <div className="flex gap-4">
+            <div className="h-2 w-2 rounded-full bg-success" />
+            <span className="text-[9px] font-bold uppercase tracking-widest text-success">Système Opérationnel</span>
+          </div>
         </div>
       </footer>
     </div>
